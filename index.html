@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Blind Test Party V25</title>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Blind Test Party V27</title>
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,sans-serif;color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(160deg,#111827,#020617);color:#fff;padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom)}.wrap{max-width:820px;margin:auto;padding:22px 0 50px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}h1{font-size:38px;margin:8px 0}.sub{color:#aab2c2;margin:0 0 20px}.card{background:#ffffff12;border:1px solid #ffffff20;border-radius:24px;padding:20px;margin-top:14px;box-shadow:0 18px 50px #0004}.hidden{display:none!important}.btn{width:100%;border:0;border-radius:18px;padding:17px;font-size:19px;font-weight:800;margin-top:10px;background:#fff;color:#111827}.btn:disabled{opacity:.35}.primary{background:#fff}.music{background:#fa2d48;color:#fff}.good{background:#22c55e;color:#06120a}.bad{background:#ef4444;color:#fff}.gold{background:#fbbf24;color:#171008}.secondary{background:#ffffff14;color:#fff;border:1px solid #ffffff25}.small{padding:11px;font-size:15px;margin-top:6px}.result{min-height:120px;display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:900;text-align:center}.turn{text-align:center;font-size:23px;font-weight:800}.turn span{color:#fbbf24}.scoreboard{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.score{padding:13px;border-radius:16px;background:#ffffff0e;border:1px solid #ffffff16;display:flex;justify-content:space-between;align-items:center}.score.active{outline:2px solid #fbbf24}.score b{font-size:21px}.score strong{font-size:25px}.row{display:flex;gap:9px}.row>*{flex:1}.stake{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.stake button{border:1px solid #ffffff25;background:#ffffff10;color:#fff;border-radius:14px;padding:14px;font-weight:800;font-size:18px}.stake button.sel{background:#fbbf24;color:#111827}.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{width:100%;background:#ffffff10;border:1px solid #ffffff22;color:#fff;border-radius:14px;padding:14px;font-size:17px;margin-top:8px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.chip{background:#ffffff0d;border:1px solid #ffffff20;border-radius:12px;padding:9px;text-align:center;font-weight:650;font-size:14px}.note{font-size:13px;color:#9ca3af;margin-top:10px;text-align:center}.status{text-align:center;font-size:16px;color:#d1d5db;margin:8px 0}.winner{font-size:34px;font-weight:900;text-align:center;color:#fbbf24}.jokerbox{border:1px solid #fbbf2460;background:#fbbf2410}.pill{display:inline-block;background:#ffffff14;border-radius:999px;padding:7px 11px;font-weight:700}.danger{color:#fca5a5}.timerbox{text-align:center;margin-top:12px;padding:14px;border-radius:18px;background:#ffffff0d;border:1px solid #ffffff20}.timer{font-size:48px;font-weight:900;font-variant-numeric:tabular-nums}.timer.urgent{color:#fbbf24}.timer.expired{color:#fca5a5}.timerlabel{font-size:14px;color:#cbd5e1;margin-top:2px}.sectiontitle{font-size:18px;font-weight:800;margin-bottom:8px}@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}.scoreboard{grid-template-columns:1fr}.result{font-size:42px}h1{font-size:31px}.answers{grid-template-columns:1fr}.row{flex-direction:column}}
 
@@ -35,9 +35,9 @@
   .row{flex-direction:column}
 }
 
-</style></head><body><div class="wrap">
+.rankingRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;margin:7px 0;border:1px solid #d8dee8;border-radius:12px;background:#fff}.rankingPos{font-weight:900;min-width:42px}.rankingName{font-weight:800;flex:1}.rankingScore{font-weight:900}.rankingRow:first-child{font-size:1.08em;border-width:2px}</style></head><body><div class="wrap">
 <div class="top"><div><h1>🎵 Blind Test Party</h1><div class="sub">Premier à 50 points 🏆</div></div><button id="reset" class="btn secondary small" style="width:auto">Nouvelle partie</button></div>
-<div class="splitHint">↔️ V25 optimisée pour Split View : garde Safari et Musique côte à côte. Le chrono et le buzz restent visibles côté jeu.</div>
+<div class="splitHint">↔️ V27 optimisée pour Split View : garde Safari et Musique côte à côte. Le chrono et le buzz restent visibles côté jeu.</div>
 
 <section id="setup" class="card">
 <div class="sectiontitle">🎮 Mode de jeu</div>
@@ -75,7 +75,12 @@
 <div id="selfArea" class="hidden"><div class="sectiontitle">Choisis la playlist</div><select id="selfPlaylist" class="field"></select><button id="openSelf" class="btn music">🎵 OUVRIR LA PLAYLIST</button><div class="note">Après le morceau, valide la réponse avant de passer au joueur suivant.</div><div id="selfJokerTimerBox" class="timerbox"><div class="timer jokerTimerDisplay">15</div><div class="timerlabel jokerTimerLabel">Prêt pour répondre</div></div><div class="answers"><button id="selfFail" class="btn bad">❌ Mauvaise réponse</button><button id="selfTitle" class="btn good">✅ Titre OU interprète</button><button id="selfBoth" class="btn gold">🌟 Titre + interprète</button></div></div>
 <div id="challengeArea" class="hidden"><div class="status">1️⃣ Choisis l’adversaire &nbsp;→&nbsp; 2️⃣ Choisis la playlist &nbsp;→&nbsp; 3️⃣ Lance le morceau</div><div class="sectiontitle">⚔️ Joueur défié</div><select id="targetPlayer" class="field"></select><div class="sectiontitle" style="margin-top:12px">🎵 Playlist imposée</div><div id="challengeCategoryNote" class="note">En mode LIGHT : choix uniquement parmi les 5 catégories du joueur qui a tiré le Joker.</div><select id="challengePlaylist" class="field"></select><button id="openChallenge" class="btn music">🎵 OUVRIR LA PLAYLIST IMPOSÉE</button><div class="note">Le joueur défié doit trouver le titre OU l’interprète. En Split View, le chrono de 15 secondes démarre automatiquement à l’ouverture de la playlist.</div><div id="jokerTimerBox" class="timerbox"><div id="jokerTimer" class="timer jokerTimerDisplay">15</div><div id="jokerTimerLabel" class="timerlabel jokerTimerLabel">Prêt pour répondre</div></div><div class="answers"><button id="challengeFail" class="btn bad">❌ Mauvaise réponse<br><small>+10 au tireur du Joker</small></button><button id="challengeTitle" class="btn good">✅ Titre OU interprète<br><small>+10 au joueur défié / −10 au tireur</small></button><button id="challengeBoth" class="btn gold">🌟 Titre + interprète<br><small>+20 au joueur défié / −20 au tireur</small></button></div></div></div>
 
-<div id="winnerArea" class="card hidden"><div id="winnerText" class="winner"></div><button id="restartWinner" class="btn gold">🏆 Rejouer</button></div>
+<div id="winnerArea" class="card hidden">
+<div class="winnerCelebration">🎉 🏆 🎉</div><div id="winnerText" class="winner"></div>
+<div class="sectiontitle" style="margin-top:16px">🏅 Classement final</div>
+<div id="finalRanking"></div>
+<button id="restartWinner" class="btn gold">🏆 Rejouer</button>
+</div>
 
 <div id="fullCategorySettings" class="card"><details><summary style="font-weight:800;cursor:pointer">⚙️ Playlists du mode FULL</summary><div class="row"><button id="all" class="btn secondary small">Tout sélectionner</button><button id="none" class="btn secondary small">Tout retirer</button></div><div id="categories" class="grid"></div></details></div>
 </section>
@@ -199,7 +204,55 @@ $('#music').onclick=()=>{if(data[current]){startCountdown('normal');saveGame();w
 $('#wrong').onclick=()=>scoreNormal(0);$('#one').onclick=()=>scoreNormal(stake);$('#both').onclick=()=>scoreNormal(stake*2);
 function scoreNormal(pts){stopTimers();timerEnd=0;players[turn].score+=pts;saveGame();renderScores();if(checkWinner(turn))return;nextTurn()}
 function nextTurn(){turn=(turn+1)%players.length;startTurn()}
-function checkWinner(i){if(players[i].score>=50){$('#winnerArea').classList.remove('hidden');$('#winnerText').textContent=`🏆 ${players[i].name} gagne avec ${players[i].score} points !`;$('#stakeArea').classList.add('hidden');$('#musicArea').classList.add('hidden');$('#drawArea').classList.add('hidden');$('#drawResult').classList.add('hidden');$('#answerArea').classList.add('hidden');$('#jokerArea').classList.add('hidden');$('#phaseStatus').textContent='Partie terminée';return true}return false}
+function victorySound(){
+  try{
+    unlockAudio();
+    if(!audioCtx)return;
+    const play=()=>{
+      const now=audioCtx.currentTime+.03;
+      const notes=[523.25,659.25,783.99,1046.5,783.99,1046.5,1318.5];
+      const starts=[0,.14,.28,.46,.64,.82,1.02];
+      notes.forEach((freq,n)=>{
+        const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+        o.type=n<3?'triangle':'square';o.frequency.setValueAtTime(freq,now+starts[n]);
+        g.gain.setValueAtTime(.0001,now+starts[n]);
+        g.gain.exponentialRampToValueAtTime(.32,now+starts[n]+.02);
+        g.gain.exponentialRampToValueAtTime(.0001,now+starts[n]+.30);
+        o.connect(g);g.connect(audioCtx.destination);
+        o.start(now+starts[n]);o.stop(now+starts[n]+.32);
+      });
+      if(navigator.vibrate)navigator.vibrate([120,70,120,70,250]);
+    };
+    if(audioCtx.state==='suspended'){
+      const r=audioCtx.resume();
+      if(r&&r.then)r.then(play).catch(()=>{});
+    }else play();
+  }catch(e){}
+}
+function renderFinalRanking(){
+  const ranking=players.map((p,i)=>({name:p.name,score:Number(p.score)||0,order:i}))
+    .sort((a,b)=>b.score-a.score||a.order-b.order);
+  $('#finalRanking').innerHTML='';
+  ranking.forEach((p,idx)=>{
+    const row=document.createElement('div');row.className='rankingRow';
+    const medal=idx===0?'🥇':idx===1?'🥈':idx===2?'🥉':`${idx+1}.`;
+    const pos=document.createElement('div');pos.className='rankingPos';pos.textContent=medal;
+    const name=document.createElement('div');name.className='rankingName';name.textContent=p.name;
+    const score=document.createElement('div');score.className='rankingScore';score.textContent=`${p.score} pts`;
+    row.append(pos,name,score);$('#finalRanking').append(row);
+  });
+}
+function checkWinner(i){
+  if((Number(players[i].score)||0)<50)return false;
+  stopTimers();saveGame();renderScores();renderFinalRanking();
+  ['#stakeArea','#musicArea','#drawArea','#drawResult','#answerArea','#jokerArea','#fullCategorySettings'].forEach(s=>{const el=$(s);if(el)el.classList.add('hidden')});
+  const wa=$('#winnerArea');wa.classList.remove('hidden');wa.classList.add('showWinner');
+  $('#winnerText').textContent=`🏆 ${players[i].name} gagne avec ${players[i].score} points !`;
+  $('#phaseStatus').textContent='🎉 Partie terminée — classement final';
+  victorySound();
+  setTimeout(()=>{try{wa.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){wa.scrollIntoView()}},50);
+  return true;
+}
 function fillPlaylistSelect(sel,categories=null){sel.innerHTML='';let keys=Array.isArray(categories)&&categories.length?categories:Object.keys(data).filter(k=>k!=='Joker'&&data[k]);keys.filter(k=>k!=='Joker'&&data[k]).forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;sel.append(o)})}
 function showJoker(){phase=phase.startsWith('joker-')?phase:'joker';$('#jokerArea').classList.remove('hidden');$('#jokerOwner').textContent=players[turn].name;$('#phaseStatus').textContent='Joker ! La mise de ce tour est annulée. Le Joker compte 5 fois dans le tirage et peut ressortir plus tard.';$('#selfArea').classList.add('hidden');$('#challengeArea').classList.add('hidden');let ownerCats=gameMode==='light'&&Array.isArray(players[turn].categories)?players[turn].categories:null;fillPlaylistSelect($('#selfPlaylist'),ownerCats);fillPlaylistSelect($('#challengePlaylist'),ownerCats);$('#targetPlayer').innerHTML='';players.forEach((p,i)=>{if(i!==turn){let o=document.createElement('option');o.value=i;o.textContent=p.name;$('#targetPlayer').append(o)}});saveGame()}
 $('#jokerSelf').onclick=()=>{phase='joker-self';resetTimer('joker');$('#selfArea').classList.remove('hidden');$('#challengeArea').classList.add('hidden');saveGame()};$('#jokerChallenge').onclick=()=>{phase='joker-challenge';resetTimer('joker');$('#challengeArea').classList.remove('hidden');$('#selfArea').classList.add('hidden');saveGame()};
