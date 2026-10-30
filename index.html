@@ -254,7 +254,7 @@ body:not(.rapid-dashboard) #rapidQrDock{display:none}
 body.rapid-dashboard #rapidPanel #rapidJoin{display:none!important}
 @media(max-height:650px){body.rapid-dashboard #rapidQrDock{padding:3px;margin-top:3px}body.rapid-dashboard #rapidQrDock #rapidQr img,body.rapid-dashboard #rapidQrDock #rapidQr canvas{width:90px!important;height:90px!important}}
 </style></head><body><div class="wrap">
-<div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party <span class="versionTag">V74</span></h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
+<div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party <span class="versionTag">V75</span></h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
 <button id="reset" class="btn secondary small" style="width:auto">Nouvelle partie</button>
 <button id="totalReset" class="btn bad small" style="width:auto">Reset total</button>
 </div></div>
@@ -272,11 +272,12 @@ body.rapid-dashboard #rapidPanel #rapidJoin{display:none!important}
 <p><b>🤝 Passage de main :</b> après le tirage d’une catégorie normale, le joueur peut jouer lui-même ou choisir <b>un coéquipier</b> dont le score individuel est <b>supérieur ou égal au sien</b>. Le coéquipier choisi fixe alors la mise (1 à 5). <b>Bonne réponse :</b> il gagne la mise (ou <b>mise ×2</b> en Classic connus / Hymnes nationaux). <b>Mauvaise réponse :</b> la mise est retirée <b>aux deux joueurs</b>. Le tour se termine sans Quitte ou Double.</p>
 <p><b>🃏 Joker :</b> le Joker annule la mise normale. Le joueur peut tenter sa chance ou défier un adversaire. <b>Joker personnel :</b> mauvaise réponse = 0 ; réponse simple = <b>+10 points</b> ; réponse complète = <b>+20 points</b>. <b>Défi :</b> si l’adversaire échoue, le tireur gagne <b>+10 points</b> ; si l’adversaire réussit, il gagne <b>+10 ou +20 points</b> et le tireur perd autant. En équipes, le défi vise un joueur <b>d’une autre équipe</b>.</p>
 <p><b>⚔️ Contre-défi Joker :</b> après avoir réussi un défi, l’adversaire peut encaisser ou redéfier immédiatement le joueur qui l’a défié. Si celui-ci réussit, le gain et la perte du premier défi sont annulés ; s’il échoue, le contre-défiant <b>double son gain initial</b> et l’autre perd autant en plus. Le jeu reprend ensuite à l’équipe / au joueur suivant le tireur initial.</p>
-<p><b>⚡ Mode LIGHT :</b> chaque joueur sélectionne <b>exactement 5 catégories</b>. Le Joker a un poids de tirage <b>×3</b> et une seule fois par joueur et par partie. Pour les défis et contre-défis, les playlists proposées respectent les catégories du joueur concerné.</p>
+<p><b>⚡ Mode LIGHT :</b> en Classique, chaque joueur sélectionne <b>exactement 5 catégories</b>. Le Joker a un poids de tirage <b>×3</b> et une seule fois par joueur et par partie. Pour les défis et contre-défis, les playlists proposées respectent les catégories du joueur concerné.</p>
 <p><b>🌈 Mode FULL :</b> les catégories activées participent au tirage. Le Joker compte <b>×3</b> et ne peut sortir qu’une fois par joueur.</p>
 </div><div class="rulesText hidden" id="rapidRulesText">
 <p><b>🎯 Objectif :</b> atteindre le score choisi au départ. En équipes, les scores des membres sont additionnés.</p>
 <p><b>📱 Connexion :</b> chaque joueur ouvre le lien du QR code sur son téléphone et choisit son prénom. L’iPad reste l’écran du maître du jeu.</p>
+<p><b>⚡ LIGHT :</b> 5 catégories sont sélectionnées une seule fois et sont communes à tous les joueurs.</p>
 <p><b>🎲 Morceau :</b> le maître du jeu tire une catégorie, ouvre la playlist Apple Music et lance le titre. La musique est mise en pause <b>manuellement</b> lorsqu’un joueur répond.</p>
 <p><b>⚡ Buzzers :</b> chaque joueur peut buzzer <b>une seule fois par morceau</b>. Les buzzers sont classés dans leur ordre de réception par l’iPad. La file reste ouverte pendant les réponses : d’autres joueurs peuvent s’y ajouter.</p>
 <p><b>🎤 Priorité :</b> le premier joueur à buzzer répond en premier. En cas d’erreur, la pénalité configurée s’applique et la priorité passe au joueur suivant de la file, sans changer de morceau.</p>
@@ -293,7 +294,7 @@ body.rapid-dashboard #rapidPanel #rapidJoin{display:none!important}
 <div class="sectiontitle">🎮 Mode de catégories</div>
 <div class="row">
   <button id="modeFull" class="btn primary">🌈 FULL CATÉGORIES<br><small>Toutes les catégories + Joker ×3</small></button>
-  <button id="modeLight" class="btn secondary">⚡ LIGHT CATÉGORIES<br><small>5 catégories par joueur + Joker ×3 · 1 par joueur</small></button>
+  <button id="modeLight" class="btn secondary">⚡ LIGHT CATÉGORIES<br><small>5 catégories (communes en Rapidité) + Joker ×3</small></button>
 </div>
 <div id="modeInfo" class="note">Mode FULL sélectionné : fonctionnement classique avec toutes les catégories activées.</div>
 <div class="sectiontitle" style="margin-top:16px">🏆 Points pour gagner</div>
@@ -314,7 +315,7 @@ body.rapid-dashboard #rapidPanel #rapidJoin{display:none!important}
 <section id="lightSetup" class="card hidden">
 <div class="sectiontitle">⚡ Choix des 5 catégories</div>
 <div id="lightPlayerTitle" class="turn"></div>
-<div class="status">Chaque joueur choisit exactement 5 catégories. Le Joker est ajouté automatiquement ×3 et une seule fois par joueur et par partie pendant toute la partie.</div>
+<div class="status">En Classique, chaque joueur choisit 5 catégories. En Rapidité, les 5 catégories sont communes à tous les joueurs.</div>
 <div id="lightCount" class="status">0 / 5 sélectionnées</div>
 <div id="lightCategories" class="grid"></div>
 <div class="row"><button id="lightBack" class="btn secondary">← Retour</button><button id="lightNext" class="btn primary">Valider les 5 catégories</button></div>
@@ -622,7 +623,7 @@ function setMode(mode){
   $('#modeLight').className='btn '+(mode==='light'?'primary':'secondary');
   $('#modeInfo').textContent=mode==='full'
     ? 'Mode FULL sélectionné : toutes les catégories cochées participent au tirage et le Joker compte 3 fois.'
-    : 'Mode LIGHT sélectionné : chaque joueur choisira 5 catégories. Le Joker compte 3 fois dans le tirage et une seule fois par joueur et par partie, comme en mode FULL.';
+    : (typeof partyType!=='undefined'&&partyType==='rapid'?'Mode LIGHT Rapidité : 5 catégories communes à tous les joueurs.':'Mode LIGHT Classique : 5 catégories par joueur.')+' Le Joker compte 3 fois dans le tirage classique, une seule fois par joueur.';
 }
 $('#modeFull').onclick=()=>setMode('full');
 $('#modeLight').onclick=()=>setMode('light');
@@ -630,15 +631,16 @@ setMode('full');
 
 function lightCategoryNames(){return Object.keys(data).filter(k=>k!=='Joker'&&data[k])}
 function renderLightPicker(){
-  const p=pendingLightPlayers[lightSetupIndex];
-  $('#lightPlayerTitle').textContent=`🎤 ${p.name} — choisis tes 5 catégories`;
+  const shared=partyType==='rapid';
+  const p=pendingLightPlayers[shared?0:lightSetupIndex];
+  $('#lightPlayerTitle').textContent=shared?'⚡ Choisissez 5 catégories communes à tous les joueurs':`🎤 ${p.name} — choisis tes 5 catégories`;
   $('#lightCategories').innerHTML='';
   lightCategoryNames().forEach(k=>{
     const l=document.createElement('label');l.className='chip';
     const c=document.createElement('input');c.type='checkbox';c.value=k;c.checked=p.categories.includes(k);
     c.onchange=()=>{
       const checked=$$('#lightCategories input:checked');
-      if(checked.length>5){c.checked=false;alert('Maximum 5 catégories par joueur.');}
+      if(checked.length>5){c.checked=false;alert(shared?'Maximum 5 catégories communes.':'Maximum 5 catégories par joueur.');}
       p.categories=$$('#lightCategories input:checked').map(x=>x.value);
       updateLightCount();
     };
@@ -650,7 +652,7 @@ function updateLightCount(){
   const n=$$('#lightCategories input:checked').length;
   $('#lightCount').textContent=`${n} / 5 sélectionnées`;
   $('#lightNext').disabled=n!==5;
-  $('#lightNext').textContent=lightSetupIndex===pendingLightPlayers.length-1?'DÉMARRER LA PARTIE':'JOUEUR SUIVANT →';
+  $('#lightNext').textContent=partyType==='rapid'||lightSetupIndex===pendingLightPlayers.length-1?'DÉMARRER LA PARTIE':'JOUEUR SUIVANT →';
 }
 function beginGame(){
   players=(gameMode==='light'?pendingLightPlayers:pendingLightPlayers.map(p=>({name:p.name,score:0,categories:[],jokerUsed:false})));
@@ -666,12 +668,13 @@ function beginGame(){
 $('#lightNext').onclick=()=>{
   const chosen=$$('#lightCategories input:checked').map(x=>x.value);
   if(chosen.length!==5){alert('Choisis exactement 5 catégories.');return}
+  if(partyType==='rapid'){pendingLightPlayers.forEach(p=>p.categories=[...chosen]);beginGame();return;}
   pendingLightPlayers[lightSetupIndex].categories=chosen;
   if(lightSetupIndex<pendingLightPlayers.length-1){lightSetupIndex++;renderLightPicker();window.scrollTo({top:0,behavior:'smooth'})}
   else beginGame();
 };
 $('#lightBack').onclick=()=>{
-  if(lightSetupIndex>0){lightSetupIndex--;renderLightPicker()}
+  if(partyType!=='rapid'&&lightSetupIndex>0){lightSetupIndex--;renderLightPicker()}
   else{$('#lightSetup').classList.add('hidden');$('#setup').classList.remove('hidden')}
 };
 
@@ -768,6 +771,7 @@ $('#openCounter').onclick=()=>{let k=$('#counterPlaylist').value;if(data[k]){sta
 $('#counterGood').onclick=()=>resolveCounter(true);$('#counterFail').onclick=()=>resolveCounter(false);
 function resolveCounter(good){stopTimers();jokerTimerEnd=0;let o=challengeOwner,t=challengeTarget,p=challengePot;if(o<0||t<0||p<=0)return;if(good){/* Annule le gain/perte du premier défi : les points reviennent au joueur initial. */players[t].score-=p;players[o].score+=p}else{/* Le contre-défiant double son gain initial. */players[t].score+=p;players[o].score-=p}renderScores();if(!good&&checkWinner(t))return;finishJokerFromOwner(o)}
 function resetGame(){
+  try{localStorage.setItem('blind-last-party-type',partyType)}catch(e){}
   if(confirm('Commencer une nouvelle partie ? Les scores seront remis à zéro mais les noms des joueurs seront conservés.')){
     const names=(Array.isArray(players)&&players.length?players.map(p=>p.name):$$('.playerName').map(x=>x.value.trim())).filter(Boolean);
     if(names.length>=2)saveRoster(names);
@@ -781,7 +785,7 @@ function resetGame(){
 }
 function totalReset(){
   if(confirm('RESET TOTAL ? Les scores, les noms des joueurs et la partie enregistrée seront effacés.')){
-    try{localStorage.removeItem(ROSTER_KEY)}catch(e){}
+    try{localStorage.removeItem(ROSTER_KEY);localStorage.removeItem('blind-last-party-type')}catch(e){}
     players=[];teamBancoBonuses={};banco=false;pendingLightPlayers=[];turn=0;stake=1;current='';phase='setup';winTarget=50;
     timerEnd=0;jokerTimerEnd=0;
     clearGame();
@@ -798,13 +802,14 @@ window.addEventListener('pagehide',saveGame);document.addEventListener('visibili
 /* V68: règles par mode et classement permanent sur iPad. */
 let partyType='classic',rapidPeer=null,rapidConnections=new Map(),rapidQueue=[],rapidSeen=new Set(),rapidActive=null,rapidRound=0,rapidCategory='',rapidFinished=true,rapidClock=null,rapidDeadline=0,rapidExpired=false;
 const rapidEl=id=>document.getElementById(id);
-function setPartyType(type){partyType=type;rapidEl('typeClassic').className='btn '+(type==='classic'?'primary':'secondary');rapidEl('typeRapid').className='btn '+(type==='rapid'?'primary':'secondary');rapidEl('rapidOptions').classList.toggle('hidden',type!=='rapid');updateRulesForMode();}
+function setPartyType(type){partyType=type;try{localStorage.setItem('blind-last-party-type',type)}catch(e){};rapidEl('typeClassic').className='btn '+(type==='classic'?'primary':'secondary');rapidEl('typeRapid').className='btn '+(type==='rapid'?'primary':'secondary');rapidEl('rapidOptions').classList.toggle('hidden',type!=='rapid');updateRulesForMode();if(typeof setMode==='function')setMode(gameMode);}
 rapidEl('typeClassic').onclick=()=>setPartyType('classic');rapidEl('typeRapid').onclick=()=>setPartyType('rapid');
+try{setPartyType(localStorage.getItem('blind-last-party-type')==='rapid'?'rapid':'classic')}catch(e){setPartyType('classic')}
 const originalBeginGame=beginGame;
 beginGame=function(){originalBeginGame();if(partyType==='rapid')startRapidGame();};
 function rapidSend(message){for(const c of rapidConnections.values())if(c.open)try{c.send(message)}catch(e){}}
 function rapidBroadcast(){rapidSend({type:'state',round:rapidRound,finished:rapidFinished,queue:rapidQueue.map(q=>q.index),active:rapidActive?.index??null,seen:[...rapidSeen],category:rapidCategory});}
-function rapidDraw(){const cats=Object.keys(data).filter(k=>{if(gameMode==='light')return players.some(p=>p.categories?.includes(k));const cb=document.querySelector('#categories input[value="'+CSS.escape(k)+'"]');return !cb||cb.checked});return cats.length?cats[Math.floor(Math.random()*cats.length)]:null;}
+function rapidDraw(){const cats=Object.keys(data).filter(k=>{if(gameMode==='light')return (partyType==='rapid'?players[0]?.categories?.includes(k):players.some(p=>p.categories?.includes(k)));const cb=document.querySelector('#categories input[value="'+CSS.escape(k)+'"]');return !cb||cb.checked});return cats.length?cats[Math.floor(Math.random()*cats.length)]:null;}
 function rapidRender(){const q=rapidEl('rapidQueue');q.replaceChildren();if(rapidActive){const d=document.createElement('div');d.textContent='🎤 Répond : '+players[rapidActive.index].name;d.style.fontWeight='bold';q.append(d);}rapidQueue.forEach((entry,i)=>{const d=document.createElement('div');d.textContent=(i+1)+'. '+players[entry.index].name+' — en attente';q.append(d)});rapidEl('rapidActions').classList.toggle('hidden',!rapidActive||rapidFinished);rapidEl('rapidStatus').textContent=rapidFinished?'Manche terminée — nouveau morceau pour continuer':rapidActive?'Réponse de '+players[rapidActive.index].name+' (pause Apple Music manuelle)':rapidQueue.length?'En attente de réponse':'Buzzers ouverts : les joueurs peuvent répondre';renderScores();}
 function rapidStopClock(){if(rapidClock!==null){clearInterval(rapidClock);rapidClock=null;}rapidDeadline=0;rapidExpired=false;rapidTimerPaint(null);}
 function rapidTimerPaint(seconds){const host=rapidEl('rapidTimer'),value=rapidEl('rapidTimerValue');if(!host||!value)return;host.classList.toggle('rapid-timer-active',seconds!==null);host.classList.toggle('rapid-timer-urgent',seconds!==null&&seconds<=3);host.classList.toggle('rapid-timer-expired',seconds===0&&rapidExpired);value.textContent=seconds===null?'--':String(seconds);}
