@@ -229,7 +229,7 @@ body.rapid-dashboard #rapidTimerValue{font-size:clamp(26px,3.5vw,43px)}
 .rulesTabs{display:flex;gap:8px;margin:10px 0 12px}.rulesTab{flex:1;padding:11px 8px;border:1px solid #ffffff45;border-radius:12px;background:#ffffff10;color:white;font-size:15px;font-weight:800;cursor:pointer}.rulesTab.active{background:#fbbf24;color:#171717;border-color:#fbbf24}
 .rapidRulesInline{font-size:12px;background:#ffffff1a;border:1px solid #ffffff40;color:white;border-radius:9px;padding:5px 9px;cursor:pointer;vertical-align:middle;margin-left:6px}
 
-/* V72 — utiliser toute la largeur disponible sur iPad */
+/* V73 — utiliser toute la largeur disponible sur iPad */
 @media (min-width: 701px) {
   body:not(.rapid-dashboard) .wrap {max-width: min(1460px, calc(100vw - 32px));}
   body:not(.rapid-dashboard) #sharedGameGrid {grid-template-columns: minmax(260px, 34%) minmax(0, 1fr);gap:14px;}
@@ -241,7 +241,7 @@ body.rapid-dashboard #rapidTimerValue{font-size:clamp(26px,3.5vw,43px)}
   body.rapid-dashboard #rapidPanel .btn {padding:7px 5px;}
 }
 </style></head><body><div class="wrap">
-<div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party <span class="versionTag">V72</span></h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
+<div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party <span class="versionTag">V73</span></h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
 <button id="reset" class="btn secondary small" style="width:auto">Nouvelle partie</button>
 <button id="totalReset" class="btn bad small" style="width:auto">Reset total</button>
 </div></div>
@@ -813,7 +813,12 @@ function startRapidGame(){rapidStopClock();document.addEventListener('pointerdow
 (function(){
   const panel=document.getElementById('rapidPanel');
   const grid=document.getElementById('sharedGameGrid');
-  if(panel&&grid&&panel.parentElement!==grid)grid.insertBefore(panel,document.getElementById('classicGameBody'));
+  // V73 : les deux panneaux de jeu doivent être des enfants DIRECTS de la grille.
+  // Dans la V72, ils étaient imbriqués dans la carte du classement :
+  // la largeur du mode Rapidité restait donc limitée à celle du classement.
+  const classic=document.getElementById('classicGameBody');
+  if(grid&&classic&&classic.parentElement!==grid)grid.appendChild(classic);
+  if(grid&&panel&&panel.parentElement!==grid)grid.insertBefore(panel,classic||null);
   const connection=document.getElementById('rapidConnection');
   const join=document.getElementById('rapidJoin');
   if(connection&&join){
