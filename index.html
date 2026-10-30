@@ -164,6 +164,19 @@
  .gameTopGrid .card{padding:9px}
 }
 @media(max-width:420px){.gameTopGrid{grid-template-columns:1fr}}
+
+/* V68 : classement permanent dans la même fenêtre, deux modes */
+#sharedGameGrid{display:grid;grid-template-columns:minmax(180px,.82fr) minmax(0,1.18fr);gap:10px;align-items:start}
+#sharedGameGrid>.rankingCard{min-width:0;margin-top:8px;position:sticky;top:8px}
+#sharedGameGrid>#rapidPanel,#sharedGameGrid>#classicGameBody{min-width:0;margin-top:8px}
+#sharedGameGrid #classicGameBody .gameTopGrid{display:block}
+#sharedGameGrid #classicGameBody .turnCard{margin-top:0}
+#sharedGameGrid>#rapidPanel .row{flex-wrap:wrap}
+#sharedGameGrid>#rapidPanel .row>*{min-width:125px}
+#sharedGameGrid>#rapidPanel .btn{font-size:15px;padding:11px 8px}
+#sharedGameGrid>#rapidPanel #rapidQr{display:flex;justify-content:center}
+#sharedGameGrid>#rapidPanel #rapidLink{overflow-wrap:anywhere;font-size:12px}
+@media(max-width:540px){#sharedGameGrid{grid-template-columns:1fr}#sharedGameGrid>.rankingCard{position:static}}
 </style></head><body><div class="wrap">
 <div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party</h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
 <button id="reset" class="btn secondary small" style="width:auto">Nouvelle partie</button>
@@ -171,7 +184,7 @@
 </div></div>
 
 
-<div id="rulesModal" class="rulesModal hidden" role="dialog" aria-modal="true" aria-labelledby="rulesTitle"><div class="rulesPanel"><div class="rulesHead"><div id="rulesTitle" class="sectiontitle">📖 Règles du jeu — V66</div><button id="rulesClose" class="rulesClose" type="button" aria-label="Fermer">✕</button></div><div class="rulesText">
+<div id="rulesModal" class="rulesModal hidden" role="dialog" aria-modal="true" aria-labelledby="rulesTitle"><div class="rulesPanel"><div class="rulesHead"><div id="rulesTitle" class="sectiontitle">📖 Règles du jeu — Classique</div><button id="rulesClose" class="rulesClose" type="button" aria-label="Fermer">✕</button></div><div class="rulesText" id="classicRulesText">
 <p><b>🎯 Objectif :</b> atteindre en premier le nombre de points fixé au départ (score individuel, ou total des points de l’équipe).</p>
 <p><b>🎲 Déroulement :</b> le jeu annonce le joueur, tire une catégorie au hasard, puis le joueur choisit sa mise de <b>1 à 5 points</b>. Il lance la playlist Apple Music et dispose de <b>15 secondes</b> pour répondre. Une mauvaise réponse rapporte <b>0 point</b> (sauf passage de main en équipe).</p>
 <p><b>🎵 Catégories habituelles :</b> titre <b>OU</b> interprète correct = <b>mise ×1</b> ; titre <b>ET</b> interprète corrects = <b>mise ×2</b>.</p>
@@ -185,6 +198,17 @@
 <p><b>⚔️ Contre-défi Joker :</b> après avoir réussi un défi, l’adversaire peut encaisser ou redéfier immédiatement le joueur qui l’a défié. Si celui-ci réussit, le gain et la perte du premier défi sont annulés ; s’il échoue, le contre-défiant <b>double son gain initial</b> et l’autre perd autant en plus. Le jeu reprend ensuite à l’équipe / au joueur suivant le tireur initial.</p>
 <p><b>⚡ Mode LIGHT :</b> chaque joueur sélectionne <b>exactement 5 catégories</b>. Le Joker a un poids de tirage <b>×3</b> et une seule fois par joueur et par partie. Pour les défis et contre-défis, les playlists proposées respectent les catégories du joueur concerné.</p>
 <p><b>🌈 Mode FULL :</b> les catégories activées participent au tirage. Le Joker compte <b>×3</b> et ne peut sortir qu’une fois par joueur.</p>
+</div><div class="rulesText hidden" id="rapidRulesText">
+<p><b>🎯 Objectif :</b> atteindre le score choisi au départ. En équipes, les scores des membres sont additionnés.</p>
+<p><b>📱 Connexion :</b> chaque joueur ouvre le lien du QR code sur son téléphone et choisit son prénom. L’iPad reste l’écran du maître du jeu.</p>
+<p><b>🎲 Morceau :</b> le maître du jeu tire une catégorie, ouvre la playlist Apple Music et lance le titre. La musique est mise en pause <b>manuellement</b> lorsqu’un joueur répond.</p>
+<p><b>⚡ Buzzers :</b> chaque joueur peut buzzer <b>une seule fois par morceau</b>. Les buzzers sont classés dans leur ordre de réception par l’iPad. La file reste ouverte pendant les réponses : d’autres joueurs peuvent s’y ajouter.</p>
+<p><b>🎤 Priorité :</b> le premier joueur à buzzer répond en premier. En cas d’erreur, la pénalité configurée s’applique et la priorité passe au joueur suivant de la file, sans changer de morceau.</p>
+<p><b>🏅 Points :</b> avant la partie, on règle les points du titre, de l’artiste (ou de l’année dans les catégories ⭐), la pénalité d’erreur et le délai de réponse. Le maître du jeu valide « Titre », « Artiste / année », « Réponse complète » ou « Mauvaise réponse ».</p>
+<p><b>⭐ Catégories spéciales :</b> dans les catégories marquées d’une étoile, l’année remplace l’interprète. Pour Classic connus et Hymnes nationaux, seul le titre est demandé.</p>
+<p><b>⏱ Temps de réponse :</b> le délai choisi sert d’avertissement au maître du jeu ; il ne valide pas automatiquement une mauvaise réponse.</p>
+<p><b>🔁 Fin de manche :</b> une bonne réponse termine le morceau et vide la file. Le maître du jeu peut aussi passer le morceau. Un nouveau morceau réinitialise les buzzers.</p>
+<p><b>🏆 Classement :</b> les scores restent visibles sur l’iPad à côté des commandes. En équipes, les scores individuels contribuent au total de chaque équipe.</p>
 </div><button id="rulesOk" class="btn gold">J’AI COMPRIS</button></div></div>
 <section id="setup" class="card">
 <div class="sectiontitle">🎵 Type de partie</div>
@@ -221,6 +245,8 @@
 </section>
 
 <section id="game" class="hidden">
+<div id="sharedGameGrid">
+<div class="card rankingCard"><div class="sectiontitle" id="rankingTitle">🏆 Classement général</div><div class="note" style="margin:0 0 8px;text-align:left">Points individuels · ✏️ pour renommer.</div><div id="teamScoreSummary" class="teamScoreSummary hidden"></div><div id="scoreboard" class="scoreboard"></div>
 <div id="rapidPanel" class="card hidden">
 <div class="sectiontitle">⚡ Rapidité — maître du jeu</div>
 <div class="note" id="rapidConnection">Connexion au service de buzzers…</div>
@@ -233,7 +259,7 @@
 <div class="row"><button id="rapidSkip" class="btn secondary">⏭ Passer ce morceau</button></div>
 <div class="note">La file reste ouverte pendant les réponses. Un seul buzz par joueur et par morceau. Après une mauvaise réponse, priorité au suivant.</div>
 </div><div id="classicGameBody"><div class="gameTopGrid">
-  <div class="card rankingCard"><div class="sectiontitle" id="rankingTitle">🏆 Classement général</div><div class="note" style="margin:0 0 8px;text-align:left">Points individuels · ✏️ pour renommer.</div><div id="teamScoreSummary" class="teamScoreSummary hidden"></div><div id="scoreboard" class="scoreboard"></div></div>
+  </div>
   <div class="card turnCard"><div id="turn" class="turn"></div><div id="phaseStatus" class="status">Tire d’abord une catégorie.</div>
   <div id="drawArea"><button id="draw" class="btn">🎲 TIRER UNE CATÉGORIE</button></div>
   <div id="drawResult" class="hidden"><div id="result" class="result compactResult"></div></div>
@@ -256,6 +282,8 @@
 
 </div>
 </div>
+</div><!-- sharedGameGrid -->
+</div><!-- close shared game grid -->
 <div id="winnerArea" class="card hidden">
 <div class="winnerCelebration">🎉 🏆 🎉</div><div id="winnerText" class="winner"></div>
 <div class="note">Le classement général ci-dessus devient le classement final.</div>
@@ -267,7 +295,8 @@
 </div>
 <script>
 const rulesModal=document.getElementById('rulesModal');
-function openRules(){rulesModal.classList.remove('hidden');document.body.style.overflow='hidden'}
+function openRules(){updateRulesForMode();rulesModal.classList.remove('hidden');document.body.style.overflow='hidden'}
+function updateRulesForMode(){const rapid=typeof partyType!=='undefined'&&partyType==='rapid';document.getElementById('classicRulesText').classList.toggle('hidden',rapid);document.getElementById('rapidRulesText').classList.toggle('hidden',!rapid);document.getElementById('rulesTitle').textContent='📖 Règles du jeu — '+(rapid?'Rapidité':'Classique');}
 function closeRules(){rulesModal.classList.add('hidden');document.body.style.overflow=''}
 document.getElementById('rulesBtn').onclick=openRules;
 document.getElementById('rulesClose').onclick=closeRules;
@@ -684,10 +713,10 @@ window.addEventListener('pagehide',saveGame);document.addEventListener('visibili
 <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-/* V67: les fonctions de la V66 restent intactes pour le mode classique. */
+/* V68: règles par mode et classement permanent sur iPad. */
 let partyType='classic',rapidPeer=null,rapidConnections=new Map(),rapidQueue=[],rapidSeen=new Set(),rapidActive=null,rapidRound=0,rapidCategory='',rapidFinished=true,rapidClock=null;
 const rapidEl=id=>document.getElementById(id);
-function setPartyType(type){partyType=type;rapidEl('typeClassic').className='btn '+(type==='classic'?'primary':'secondary');rapidEl('typeRapid').className='btn '+(type==='rapid'?'primary':'secondary');rapidEl('rapidOptions').classList.toggle('hidden',type!=='rapid');}
+function setPartyType(type){partyType=type;rapidEl('typeClassic').className='btn '+(type==='classic'?'primary':'secondary');rapidEl('typeRapid').className='btn '+(type==='rapid'?'primary':'secondary');rapidEl('rapidOptions').classList.toggle('hidden',type!=='rapid');updateRulesForMode();}
 rapidEl('typeClassic').onclick=()=>setPartyType('classic');rapidEl('typeRapid').onclick=()=>setPartyType('rapid');
 const originalBeginGame=beginGame;
 beginGame=function(){originalBeginGame();if(partyType==='rapid')startRapidGame();};
