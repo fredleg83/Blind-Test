@@ -240,8 +240,21 @@ body.rapid-dashboard #rapidTimerValue{font-size:clamp(26px,3.5vw,43px)}
 @media (min-width: 701px) and (max-height: 900px) {
   body.rapid-dashboard #rapidPanel .btn {padding:7px 5px;}
 }
+
+/* V74 — QR permanent dans l'espace libre sous le classement */
+body.rapid-dashboard #rapidQrDock{display:flex;flex-direction:column;align-items:center;flex:0 0 auto;gap:5px;padding:8px 6px 5px;margin-top:7px;border-top:1px solid #ffffff28;min-height:0}
+body.rapid-dashboard #rapidQrDock .rapidQrHeading{font-weight:800;font-size:13px;text-align:center}
+body.rapid-dashboard #rapidQrDock #rapidJoin{display:flex!important;flex-direction:column;align-items:center;position:static!important;inset:auto!important;width:100%!important;max-height:none!important;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;gap:3px}
+body.rapid-dashboard #rapidQrDock #rapidQr{display:flex;justify-content:center;align-items:center}
+body.rapid-dashboard #rapidQrDock #rapidQr img,body.rapid-dashboard #rapidQrDock #rapidQr canvas{width:clamp(90px,12vw,145px)!important;height:clamp(90px,12vw,145px)!important;max-width:100%}
+body.rapid-dashboard #rapidQrDock #rapidJoin p{margin:0;text-align:center;max-width:100%;line-height:1.15}
+body.rapid-dashboard #rapidQrDock #rapidLink{display:block;font-size:10px;overflow-wrap:anywhere;max-height:28px;overflow:hidden}
+body.rapid-dashboard #rapidQrDock #rapidJoin .note{display:none}
+body:not(.rapid-dashboard) #rapidQrDock{display:none}
+body.rapid-dashboard #rapidPanel #rapidJoin{display:none!important}
+@media(max-height:650px){body.rapid-dashboard #rapidQrDock{padding:3px;margin-top:3px}body.rapid-dashboard #rapidQrDock #rapidQr img,body.rapid-dashboard #rapidQrDock #rapidQr canvas{width:90px!important;height:90px!important}}
 </style></head><body><div class="wrap">
-<div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party <span class="versionTag">V73</span></h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
+<div class="top"><div><div class="titleRow"><h1>🎵 Blind Test Party <span class="versionTag">V74</span></h1><button id="rulesBtn" class="rulesBtn" type="button" aria-label="Afficher la règle du jeu">📖 Règles</button></div><div id="headerMode" class="sub" style="font-weight:800;letter-spacing:.08em">🎵 MODE À CHOISIR</div><div class="sub">Objectif : <span id="headerTarget">50</span> points 🏆</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end">
 <button id="reset" class="btn secondary small" style="width:auto">Nouvelle partie</button>
 <button id="totalReset" class="btn bad small" style="width:auto">Reset total</button>
 </div></div>
@@ -819,20 +832,19 @@ function startRapidGame(){rapidStopClock();document.addEventListener('pointerdow
   const classic=document.getElementById('classicGameBody');
   if(grid&&classic&&classic.parentElement!==grid)grid.appendChild(classic);
   if(grid&&panel&&panel.parentElement!==grid)grid.insertBefore(panel,classic||null);
-  const connection=document.getElementById('rapidConnection');
+  // V74 : QR code toujours visible dans la partie basse de la colonne classement.
   const join=document.getElementById('rapidJoin');
-  if(connection&&join){
-    const toggle=document.createElement('button');
-    toggle.type='button';toggle.id='rapidConnectToggle';toggle.className='btn secondary';
-    toggle.textContent='📱 Connecter les joueurs / QR code';
-    connection.insertAdjacentElement('afterend',toggle);
-    toggle.onclick=()=>{join.classList.toggle('hidden');toggle.setAttribute('aria-expanded',String(!join.classList.contains('hidden')))};
-    toggle.setAttribute('aria-expanded','false');
-    // Le QR code reste masqué jusqu'à ce que le maître du jeu le demande.
-    const observer=new MutationObserver(()=>{
-      if(document.body.classList.contains('rapid-dashboard')&&!join.dataset.v69Initialized){join.classList.add('hidden');join.dataset.v69Initialized='1'}
-    });
-    observer.observe(join,{attributes:true,attributeFilter:['class']});
+  const ranking=document.querySelector('#sharedGameGrid>.rankingCard');
+  if(join&&ranking){
+    const dock=document.createElement('div');
+    dock.id='rapidQrDock';
+    const heading=document.createElement('div');
+    heading.className='rapidQrHeading';
+    heading.textContent='📱 Rejoindre la partie';
+    dock.appendChild(heading);
+    dock.appendChild(join);
+    ranking.appendChild(dock);
+    join.classList.remove('hidden');
   }
   const originalStart=window.startRapidGame;
   if(typeof originalStart==='function'){
